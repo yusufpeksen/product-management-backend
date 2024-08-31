@@ -1,8 +1,12 @@
 package com.yusufpeksen.product_management.model;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "products")
@@ -21,15 +25,15 @@ public class Product {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @Column(name = "create_time", nullable = false)
-    private Time createTime;
+    @Column(name = "create_time", nullable = true)
+    private LocalTime createTime;
 
     @Enumerated(EnumType.STRING)
     private Category category;
 
     public Product() {}
 
-    public Product(Category category, Time createTime, double price, String description, String name) {
+    public Product(Category category, LocalTime createTime, double price, String description, String name) {
         this.category = category;
         this.createTime = createTime;
         this.price = price;
@@ -53,7 +57,7 @@ public class Product {
         return price;
     }
 
-    public Time getCreateTime() {
+    public LocalTime getCreateTime() {
         return createTime;
     }
 
@@ -65,7 +69,7 @@ public class Product {
         this.category = category;
     }
 
-    public void setCreateTime(Time createTime) {
+    public void setCreateTime(LocalTime createTime) {
         this.createTime = createTime;
     }
 
